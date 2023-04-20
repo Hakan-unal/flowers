@@ -14,7 +14,7 @@ const leafPositions = [
 ]
 const App = () => {
   const [checked, setChecked] = useState(false)
-  let canvas: HTMLCanvasElement;
+  let canvas: any;
   let draw: CanvasRenderingContext2D;
   const size = useWindowSize()
 
@@ -22,7 +22,7 @@ const App = () => {
     canvas = document.getElementById('canvas')
     draw = canvas.getContext("2d")
     console.log(document.getElementById('canvas'))
-    canvas?.addEventListener("click", (event) => {
+    canvas?.addEventListener("click", (event: any) => {
       checked ? papatya(event) : gul(event)
     });
   }, [document.getElementById('canvas'), checked])
