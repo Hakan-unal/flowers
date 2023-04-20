@@ -14,9 +14,18 @@ const leafPositions = [
 ]
 const App = () => {
   const [checked, setChecked] = useState(false)
-  const canvas = document.getElementById('myChart') as HTMLCanvasElement;
-  const draw = canvas.getContext("2d") as CanvasRenderingContext2D;
+  let canvas: HTMLCanvasElement;
+  let draw: CanvasRenderingContext2D;
   const size = useWindowSize()
+
+  useEffect(() => {
+    canvas = document.getElementById('canvas')
+    draw = canvas.getContext("2d")
+    console.log(document.getElementById('canvas'))
+    canvas?.addEventListener("click", (event) => {
+      checked ? papatya(event) : gul(event)
+    });
+  }, [document.getElementById('canvas'), checked])
 
   const papatya = (event: any) => {
     //  yuvarlak
@@ -55,10 +64,7 @@ const App = () => {
     draw.clearRect(0, 0, size.width - 30, size.height - 20);
 
   }
-  canvas?.addEventListener("click", (event) => {
-    checked ? papatya(event) : gul(event)
 
-  });
 
 
   return (<Space direction="vertical">
