@@ -14,16 +14,16 @@ const leafPositions = [
 ]
 const App = () => {
   const [checked, setChecked] = useState(false)
-  const canvas = document.getElementById('myChart') as HTMLCanvasElement;
-  const draw = canvas.getContext("2d") as CanvasRenderingContext2D;
+  let canvas = document.getElementById("canvas") as any;
+  const draw = canvas?.getContext("2d") as any;
   const size = useWindowSize()
 
   const papatya = (event: any) => {
     //  yuvarlak
-    draw?.beginPath();
-    draw?.arc(event.clientX, event.clientY, 40, 0, 2 * Math.PI, false);
+    draw.beginPath();
+    draw.arc(event.clientX, event.clientY, 40, 0, 2 * Math.PI, false);
     draw.fillStyle = "yellow";
-    draw?.fill();
+    draw.fill();
     draw.stroke();
     // yaprak
     leafPositions.map((obj) => {
@@ -55,7 +55,7 @@ const App = () => {
     draw.clearRect(0, 0, size.width - 30, size.height - 20);
 
   }
-  canvas?.addEventListener("click", (event) => {
+  canvas?.addEventListener("click", (event: any) => {
     checked ? papatya(event) : gul(event)
 
   });
