@@ -13,7 +13,7 @@ const leafPositions = [
   { xPosition: 40, yPosition: 40, radius: 15, color: "green" },
 ]
 const App = () => {
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(true)
   let canvas = document.getElementById("canvas") as any;
   const draw = canvas?.getContext("2d") as any;
   const size = useWindowSize()
@@ -60,12 +60,17 @@ const App = () => {
 
   });
 
+  const handleChecked = () => {
+    setChecked(!checked)
+    handleClear()
+  }
+
 
   return (<Space direction="vertical">
     <Space direction="horizontal">
       <Switch
         checked={checked}
-        onChange={() => setChecked(!checked)}
+        onChange={() => handleChecked()}
         checkedChildren={"Papatya"}
         unCheckedChildren={"Gül"}
         defaultChecked />
